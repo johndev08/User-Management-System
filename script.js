@@ -1,27 +1,8 @@
-let users = [
-  {
-    user_name: "john doe",
-    user_age: "21",
-    user_gender: "Male",
-    user_address: "Washington DC",
-    user_phone: "09936478894",
-    user_birth: "10/19/2003",
-    user_email: "jlmm101903@gmail.com",
-  },
-  {
-    user_name: "jane doe",
-    user_age: "19",
-    user_gender: "Female",
-    user_address: "Washington DC",
-    user_phone: "09303309856",
-    user_birth: "06/29/2003",
-    user_email: "janedoe19@gmail.com",
-  },
-];
+let users = JSON.parse(localStorage.getItem("userinfo")) || [];
 
 function renderUsers() {
   let usersdisplay = "";
-  for (i = 0; i < users.length; i++) {
+  for (let i = 0; i < users.length; i++) {
     let userIndex = users[i];
     const {
       user_name,
@@ -75,10 +56,17 @@ function save() {
       user_birth: birth.value,
       user_email: email.value,
     });
-    renderUsers();
+
+    try {
+      localStorage.setItem("userinfo", JSON.stringify(users));
+      console.log("successfully saved");
+      renderUsers();
+    } catch (error) {
+      console.error("failed to save.", error);
+    }
   }
 }
-function removeUser(removeindex){
-    users.splice(removeUser, 1);
-    renderUsers();
+function removeUser(removeindex) {
+  users.splice(removeindex, 1);
+  renderUsers();
 }
