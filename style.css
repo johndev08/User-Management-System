@@ -1,5 +1,5 @@
 :root {
-  --bg-light: #e2fcff;
+  --bg-light: #c8cfcf;
 }
 
 body {
@@ -21,6 +21,7 @@ h1 {
 .userSection{
     background-color: #ffffff;
     padding: 10px;
+    border-radius: 0 0 1rem 1rem;
 }
 .divelement{
     border-bottom: 1px solid;
