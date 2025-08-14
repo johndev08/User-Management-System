@@ -14,7 +14,7 @@ function renderUsers() {
       user_email,
     } = userIndex;
     let userElement = `
-        <div style='border:1px solid'>
+        <div class='divelement'>
             <div>${user_name},${user_age},${user_gender},${user_address},${user_phone},${user_birth},${user_email} <button onclick='removeUser("${i}")'>Delete</button></div>
         </div>`;
     usersdisplay += userElement;

@@ -1,0 +1,31 @@
+:root {
+  --bg-light: #e2fcff;
+}
+
+body {
+  margin: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+  background-color: var(--bg-light);
+  width: auto;
+}
+h1 {
+  margin: 0.5rem 0;
+}
+.container {
+    background: #ffffff;
+  padding: 1rem;
+  border-radius: 1rem 1rem 0 0;
+  margin-bottom: .5rem;
+}
+.divelement{
+    border: 1px solid;
+    padding: .3rem 1rem;
+}
+.addnew{
+    color: #e2fcff;
+    border: none;
+    background-color: #5656ff;
+    font-weight: bold;
+    padding: .4rem .7rem;
+}
