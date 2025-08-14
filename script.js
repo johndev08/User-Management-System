@@ -57,6 +57,14 @@ function save() {
       user_email: email.value,
     });
 
+    name.value = '';
+    age.value = '';
+    gender.value = '';
+    address.value = '';
+    phone.value = '';
+    birth.value = '';
+    email.value = '';
+
     try {
       localStorage.setItem("userinfo", JSON.stringify(users));
       console.log("successfully saved");
