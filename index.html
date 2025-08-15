@@ -11,25 +11,31 @@
       <h1>User Management System</h1>
       <button popovertarget="adduser" class="addnew">Add new</button>
       <div class="resister" id="adduser" popover>
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" /><br />
-        <label for="age">Age:</label>
-        <input type="number" name="age" id="age" /><br />
-        <div>
-          <label for="Male">Male:</label>
-          <input type="radio" name="gender" id="Male" value="Male" />
-          <label for="Female">Female:</label>
-          <input type="radio" name="gender" id="Female" value="Female" />
+        <h2>Add User here</h2>
+        <label for="name">Name:</label><br />
+        <input type="text" name="name" id="name" class="input" /><br />
+
+        <div class="age-gender">
+          <label for="age">Age:</label>
+          <input type="number" name="age" id="age" class="input" />
+          <div class="radiobtn">
+            <label for="Male">Male:</label>
+            <input type="radio" name="gender" id="Male" value="Male" />
+            <label for="Female">Female:</label>
+            <input type="radio" name="gender" id="Female" value="Female" />
+          </div>
         </div>
         <label for="address">Address:</label>
-        <input type="text" name="address" id="address" /><br />
+        <input type="text" name="address" id="address" class="input" /><br />
         <label for="phone">Phone Number:</label>
-        <input type="tel" name="phone" id="phone" /><br />
+        <input type="tel" name="phone" id="phone" class="input" /><br />
         <label for="birth">Birthday:</label>
-        <input type="date" name="birth" id="birth" /><br />
+        <input type="date" name="birth" id="birth" class="input" /><br />
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" /><br />
-        <button onclick="save()" popovertarget="adduser" class="addbtn">Save Profile</button>
+        <input type="email" name="email" id="email" class="input" placeholder="ex@gmail.com"/><br />
+        <button onclick="save()" popovertarget="adduser" class="addbtn">
+          Save Profile
+        </button>
       </div>
     </div>
     <div class="userSection"></div>

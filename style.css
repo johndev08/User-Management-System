@@ -1,5 +1,5 @@
 :root {
-  --bg-light: #c8cfcf;
+  --bg-light: #f0f0f0;
 }
 
 body {
@@ -8,31 +8,69 @@ body {
   box-sizing: border-box;
   background-color: var(--bg-light);
   width: auto;
+  font-weight: 300;
 }
 h1 {
   margin: 0.5rem 0;
 }
 .container {
-    background: #ffffff;
+  background: #ffffff;
   padding: 1rem;
   border-radius: 1rem 1rem 0 0;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0.2rem 0.2rem 7px #d4d4d4;
 }
-.userSection{
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 0 0 1rem 1rem;
+.userSection {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: 0.2rem 0.2rem 7px #d4d4d4;
 }
-.divelement{
-    border-bottom: 1px solid;
-    padding: .3rem 1rem;
+.divelement {
+  border-bottom: 1px solid;
+  padding: 0.3rem 1rem;
 }
 
-.addnew{
-    color: #e2fcff;
-    border: none;
-    background-color: #5656ff;
-    font-weight: bold;
-    padding: .4rem .7rem;
-    border-radius: 5px;
+.addnew {
+  color: #e2fcff;
+  border: none;
+  background-color: #5656ff;
+  font-weight: bold;
+  padding: 0.4rem 0.7rem;
+  border-radius: 5px;
+}
+#adduser{
+  border: none;
+  border-radius: 5px;
+  padding: 2rem;
+  box-shadow: 1px 1px 25px;
+  width: 60%;
+}
+#adduser > h2{
+  margin: 0 0 10px 0;
+}
+.input{
+  padding: .5rem .9rem;
+  margin-bottom: 7px;
+  width: 93%;
+  border: 1px solid;
+}
+.radiobtn{
+  width: 73%;
+}
+#age{
+  width: 10%;
+}
+.age-gender{
+  display: flex;
+  justify-content: space-between;
+  height: 1.9rem;
+}
+.addbtn{
+  border: none;
+  padding: .5rem .8rem;
+  background-color: #00c91b;
+  color: #f0f0f0;
+  font-weight: 500;
+  border-radius: 5px;
 }
