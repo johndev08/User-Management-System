@@ -9,6 +9,7 @@ body {
   background-color: var(--bg-light);
   width: auto;
   font-weight: 300;
+  font-family: sans-serif;
 }
 h1 {
   margin: 0.5rem 0;
