@@ -31,21 +31,64 @@ function save() {
   let phone = document.getElementById("phone");
   let birth = document.getElementById("birth");
   let email = document.getElementById("email");
+  let swaltext = `<button style='border:none; background-color: transparent; color: #ffffff' popovertarget="adduser" >OK</button>`;
 
   if (name.value === "") {
-    alert("please fill the name.");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please fill the Name!",
+      confirmButtonText: swaltext,
+    });
+    return;
   } else if (age.value === "") {
-    alert("please fill the age.");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please fill the Age!",
+      confirmButtonText: swaltext,
+    });
+    return;
   } else if (!gender) {
-    alert("please select a gender.");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "You forgot to select a Gender!",
+      confirmButtonText: swaltext,
+    });
+    return;
   } else if (address.value === "") {
-    alert("please fill the address.");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please fill the Address!",
+      confirmButtonText: swaltext,
+    });
+    return;
   } else if (phone.value === "") {
-    alert("please fill the phone number.");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please fill the Phone Number!",
+      confirmButtonText: swaltext,
+    });
+    return;
   } else if (birth.value === "") {
-    alert("please fill the birthday.");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please fill the Birthday!",
+      confirmButtonText: swaltext,
+    });
+    return;
   } else if (email.value === "") {
-    alert("please fill the email.");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please fill the Email!",
+      confirmButtonText: swaltext,
+    });
+    return;
   } else {
     users.push({
       user_name: name.value,
@@ -57,18 +100,22 @@ function save() {
       user_email: email.value,
     });
 
-    name.value = '';
-    age.value = '';
-    gender.value = '';
-    address.value = '';
-    phone.value = '';
-    birth.value = '';
-    email.value = '';
-
+    name.value = "";
+    age.value = "";
+    gender.value = "";
+    address.value = "";
+    phone.value = "";
+    birth.value = "";
+    email.value = "";
+    save();
     try {
       localStorage.setItem("userinfo", JSON.stringify(users));
       console.log("successfully saved");
       renderUsers();
+      Swal.fire({
+        title: "successfully saved!",
+        icon: "success",
+      });
     } catch (error) {
       console.error("failed to save.", error);
     }
