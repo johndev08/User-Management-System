@@ -1,28 +1,96 @@
-let users = JSON.parse(localStorage.getItem("userinfo")) || [];
+// Default users that should always be present
+const defaultUsers = [
+  {
+    user_name: "JohnDoe",
+    user_age: "29",
+    user_gender: "Male",
+    user_address: "Washington DC",
+    user_phone: "09936478894",
+    user_birth: "10-19-2003",
+    user_email: "johndoe29@gmail.com",
+  },
+  {
+    user_name: "JaneDoe",
+    user_age: "24",
+    user_gender: "Female",
+    user_address: "Washington DC",
+    user_phone: "09303309856",
+    user_birth: "06-29-2003",
+    user_email: "janedoe25@gmail.com",
+  },
+];
+
+function loadUsers() {
+  const savedUsers = JSON.parse(localStorage.getItem("userinfo")) || [];
+
+  if (savedUsers.length === 0) {
+    return [...defaultUsers];
+  }
+
+  const hasDefaultUsers = savedUsers.some(
+    (user) =>
+      user.user_email === "johndoe29@gmail.com" ||
+      user.user_email === "janedoe25@gmail.com"
+  );
+
+  if (!hasDefaultUsers) {
+    return [...defaultUsers, ...savedUsers];
+  }
+
+  return savedUsers;
+}
+
+let users = loadUsers();
 
 function renderUsers() {
   let usersdisplay = "";
-  for (let i = 0; i < users.length; i++) {
-    let userIndex = users[i];
-    const {
-      user_name,
-      user_age,
-      user_gender,
-      user_address,
-      user_phone,
-      user_birth,
-      user_email,
-    } = userIndex;
-    let userElement = `
+  if (users.length === 0) {
+    document.querySelector(".userSection").innerHTML = "Note: User is empty";
+  } else {
+    for (let i = 0; i < users.length; i++) {
+      let userIndex = users[i];
+      const {
+        user_name,
+        user_age,
+        user_gender,
+        user_address,
+        user_phone,
+        user_birth,
+        user_email,
+      } = userIndex;
+      let userElement = `
         <div class='divelement'>
-            <div style='solid;display:flex;justify-content:space-between;'>
-                <span style=''>${user_name}</span><span style=''>${user_age}</span>
+            <div style='display:flex;'>
+                <div style='width: 10%;'>
+                    <img src="user.png">
+                </div>
+                <div style='width: 90% ;'>
+                    <div style='display:flex;justify-content:space-between;'>
+                        <span style='width:70%;border-bottom: 1px solid;padding:2px;'>${user_name}</span>
+                        <span style='width:20%;border-bottom: 1px solid;padding:2px;'>${user_gender}</span>
+                        <span style='width:10%;border-bottom: 1px solid;padding:2px;'>${user_age}</span>
+                    </div>
+                    <div style='display:flex;justify-content:space-between;'>
+                        <span style='width:60%;border-bottom: 1px solid;padding:2px;'>${user_address}</span>
+                        <span style='width:40%;border-bottom: 1px solid;padding:2px;'>${user_phone}</span>
+                    </div>
+                </div>  
             </div>
-           ${user_gender},${user_address},${user_phone},${user_birth},${user_email} <button onclick='removeUser("${i}")'>Delete</button>
-        </div>`;
-    usersdisplay += userElement;
+            <div style='display:flex'>
+                <span style='width:25%;border-bottom: 1px solid;padding:2px;'>${user_birth}</span>  
+                <span style='width:50%;border-bottom: 1px solid;padding:2px;'>${user_email}</span> 
+                <button class='detailsbtn' popovertarget='userdetails-${i}'>Details</button>
+            </div>
+        </div>
+        
+        <div id='userdetails-${i}' popover>
+            <button onclick='removeUser(${i})'>Delete</button>
+        </div>
+        `;
+      usersdisplay += userElement;
+    }
+    document.querySelector(".userSection").innerHTML = usersdisplay;
   }
-  document.querySelector(".userSection").innerHTML = usersdisplay;
 }
 renderUsers();
 
@@ -105,26 +173,43 @@ function save() {
 
     name.value = "";
     age.value = "";
-    gender.value = "";
+    if (gender) gender.checked = false; 
     address.value = "";
     phone.value = "";
     birth.value = "";
     email.value = "";
-    save();
+
+    // Save to localStorage and update display
     try {
       localStorage.setItem("userinfo", JSON.stringify(users));
-      console.log("successfully saved");
+      console.log("Successfully saved");
       renderUsers();
       Swal.fire({
-        title: "successfully saved!",
+        title: "Successfully saved!",
         icon: "success",
       });
     } catch (error) {
-      console.error("failed to save.", error);
+      console.error("Failed to save.", error);
     }
   }
 }
+
 function removeUser(removeindex) {
+  if (removeindex < 2) {
+    Swal.fire({
+      title: "Cannot Delete",
+      text: "Default users cannot be deleted!",
+      icon: "warning",
+    });
+    return;
+  }
+
   users.splice(removeindex, 1);
+  localStorage.setItem("userinfo", JSON.stringify(users));
+  Swal.fire({
+    title: "Good job!",
+    text: "User deleted successfully!",
+    icon: "success",
+  });
   renderUsers();
 }

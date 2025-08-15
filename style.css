@@ -28,8 +28,11 @@ h1 {
   box-shadow: 0.2rem 0.2rem 7px #d4d4d4;
 }
 .divelement {
-  border-bottom: 1px solid;
-  padding: 0.3rem 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #f1f1f1;
+  margin-bottom: 10px;
+  box-shadow: 1px 1px 5px;
+  border-radius: 5px;
 }
 
 .addnew {
@@ -85,4 +88,16 @@ h1 {
   color: red;
   font-size: 0.9rem;
   margin: 0;
+}
+.divelement > div > div > img{
+  width: clamp(2rem,8vw,5rem);
+  margin-bottom: -6px;
+}
+
+.detailsbtn{
+  border: none;
+  background-color: #11bd6d;
+  color: #ffffff;
+  padding: .3rem .5rem;
+  margin: .1rem .9rem;
 }
