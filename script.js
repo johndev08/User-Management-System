@@ -316,7 +316,8 @@ function updateUser(updateIndex) {
       console.log("Successfully saved");
       renderUsers();
       Swal.fire({
-        title: "Successfully saved!",
+        title: "Successfully Update!",
+        text: `${newname.value} user updated` ,
         icon: "success",
       });
     } catch (error) {
