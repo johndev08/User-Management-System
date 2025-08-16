@@ -5,8 +5,8 @@ const defaultUsers = [
     user_age: "29",
     user_gender: "Male",
     user_address: "Washington DC",
-    user_phone: "09936478894",
-    user_birth: "10-19-2003",
+    user_phone: "0993-647-8894",
+    user_birth: "2003-10-19",
     user_email: "johndoe29@gmail.com",
   },
   {
@@ -14,8 +14,8 @@ const defaultUsers = [
     user_age: "24",
     user_gender: "Female",
     user_address: "Washington DC",
-    user_phone: "09303309856",
-    user_birth: "06-29-2003",
+    user_phone: "0930-330-9856",
+    user_birth: "2003-06-29",
     user_email: "janedoe25@gmail.com",
   },
 ];
@@ -66,19 +66,19 @@ function renderUsers() {
                 </div>
                 <div style='width: 90% ;'>
                     <div style='display:flex;justify-content:space-between;'>
-                        <span style='width:70%;border-bottom: 1px solid;padding:2px;'>${user_name}</span>
-                        <span style='width:20%;border-bottom: 1px solid;padding:2px;'>${user_gender}</span>
-                        <span style='width:10%;border-bottom: 1px solid;padding:2px;'>${user_age}</span>
+                        <span style='width:70%;padding:2px;'>${user_name}</span>
+                        <span style='width:20%;padding:2px;'>${user_gender}</span>
+                        <span style='width:10%;padding:2px;'>${user_age}</span>
                     </div>
                     <div style='display:flex;justify-content:space-between;'>
-                        <span style='width:60%;border-bottom: 1px solid;padding:2px;'>${user_address}</span>
-                        <span style='width:40%;border-bottom: 1px solid;padding:2px;'>${user_phone}</span>
+                        <span style='width:60%;padding:2px;'>${user_address}</span>
+                        <span style='width:40%;padding:2px;'>${user_phone}</span>
                     </div>
                 </div>  
             </div>
             <div style='display:flex'>
-                <span style='width:25%;border-bottom: 1px solid;padding:2px;'>${user_birth}</span>  
-                <span style='width:50%;border-bottom: 1px solid;padding:2px;'>${user_email}</span> 
+                <span style='width:25%;padding:2px;'>${user_birth}</span>  
+                <span style='width:50%;padding:2px;'>${user_email}</span> 
                 <button class='detailsbtn' popovertarget='userdetails-${i}'>Details</button>
             </div>
         </div>
