@@ -14,6 +14,7 @@ body {
 h1 {
   margin: 0.5rem 0;
 }
+
 .container {
   background: #ffffff;
   padding: 1rem;
@@ -43,7 +44,7 @@ h1 {
   padding: 0.4rem 0.7rem;
   border-radius: 5px;
 }
-#adduser {
+#adduser , .update{
   border: none;
   border-radius: 5px;
   padding: 2rem;
@@ -84,20 +85,69 @@ h1 {
   text-align: center;
   margin-bottom: 0;
 }
+.updateUser {
+  border: none;
+  padding: 0.5rem 0.8rem;
+  background-color: #ff9900;
+  color: #f0f0f0;
+  font-weight: 400;
+  font-size: 1rem;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 3px;
+  text-align: center;
+  margin-bottom: 0;
+}
+.removeUser {
+  border: none;
+  padding: 0.5rem 0.8rem;
+  background-color: #ff0000;
+  color: #f0f0f0;
+  font-weight: 400;
+  font-size: 1rem;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 3px;
+  text-align: center;
+  margin-bottom: 0;
+}
 #errornotif {
   color: red;
   font-size: 0.9rem;
   margin: 0;
 }
-.divelement > div > div > img{
-  width: clamp(2rem,8vw,5rem);
+.divelement > div > div > img {
+  width: clamp(2rem, 8vw, 5rem);
   margin-bottom: -6px;
 }
 
-.detailsbtn{
+.detailsbtn {
   border: none;
   background-color: #11bd6d;
   color: #ffffff;
-  padding: .3rem .5rem;
+  padding: 0.3rem 0.5rem;
   width: 25%;
+}
+
+@media  screen and (min-width : 1024px) {
+  .container , .userSection{
+    max-width: 700px;
+  }
+  body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media screen and (min-width: 780px) {
+  .container ,.userSection{
+    max-width: 400px;
+  }
+    body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

@@ -1,4 +1,3 @@
-// Default users that should always be present
 const defaultUsers = [
   {
     user_name: "JohnDoe",
@@ -83,8 +82,41 @@ function renderUsers() {
             </div>
         </div>
         
-        <div id='userdetails-${i}' popover>
-            <button onclick='removeUser(${i})'>Delete</button>
+        <div id='userdetails-${i}' class='update' popover>
+          <div class='updatechild'>
+              <h1>User Details</h1>
+              <label for="newname">Name:</label><br />
+              <input type="text" name="newname" id="newname-${i}" class="input" value='${user_name}'/><br />
+
+              <div class="age-gender">
+                <label for="newage">Age:</label>
+                <input type="number" name="newage" id="newage-${i}" class="input" value='${user_age}' />
+                  <label for="newMale">Male:</label>
+                  <input type="radio" name="newgender_${i}" id="newMale" value="Male" ${
+        user_gender === "Male" ? "checked" : ""
+      }/>
+                  <label for="newFemale">Female:</label>
+                  <input type="radio" name="newgender_${i}" id="newFemale" value="Female" ${
+        user_gender === "Female" ? "checked" : ""
+      }/>
+              </div>
+
+              <label for="newaddress">Address:</label>
+              <input type="text" name="newaddress" id="newaddress-${i}" class="input" value="${user_address}" /><br />
+
+              <label for="newphone">Phone Number:</label>
+              <input type="tel" name="newphone" id="newphone-${i}" class="input" value="${user_phone}"/><br />
+
+              <label for="newbirth">Birthday:</label>
+              <input type="date" name="newbirth" id="newbirth-${i}" class="input" value="${user_birth}" /><br />
+
+              <label for="newemail">Email:</label>
+              <input type="newemail" name="newemail" id="newemail-${i}" class="input" value="${user_email}"/><br />
+        
+              
+              <button onclick='updateUser(${i})' popovertarget='userdetails-${i}' class='updateUser'>Update</button>
+              <button onclick='removeUser(${i})' popovertarget='userdetails-${i}' class='removeUser'>Delete</button>
+          </div>
         </div>
         `;
       usersdisplay += userElement;
@@ -109,6 +141,7 @@ function save() {
       icon: "error",
       title: "Oops...",
       text: "Please fill the Name!",
+      // buttonsStyling: false,
       confirmButtonText: swaltext,
     });
     return;
@@ -173,13 +206,111 @@ function save() {
 
     name.value = "";
     age.value = "";
-    if (gender) gender.checked = false; 
+    if (gender) gender.checked = false;
     address.value = "";
     phone.value = "";
     birth.value = "";
     email.value = "";
 
-    // Save to localStorage and update display
+    try {
+      localStorage.setItem("userinfo", JSON.stringify(users));
+      console.log("Successfully saved");
+      renderUsers();
+      Swal.fire({
+        title: "Successfully saved!",
+        icon: "success",
+      });
+    } catch (error) {
+      console.error("Failed to save.", error);
+    }
+  }
+}
+function updateUser(updateIndex) {
+  let newname = document.getElementById(`newname-${updateIndex}`);
+  let newage = document.getElementById(`newage-${updateIndex}`);
+  let newgender = document.querySelector(`input[name="newgender_${updateIndex}"]:checked`);
+  let newaddress = document.getElementById(`newaddress-${updateIndex}`);
+  let newphone = document.getElementById(`newphone-${updateIndex}`);
+  let newbirth = document.getElementById(`newbirth-${updateIndex}`);
+  let newemail = document.getElementById(`newemail-${updateIndex}`);
+  let swaltext = `<button style='border:none; background-color: transparent; color: #ffffff' popovertarget="userdetails-${updateIndex}" >OK</button>`;
+
+  if (updateIndex < 2) {
+    Swal.fire({
+      title: "Cannot Edit",
+      text: "Default users cannot be edited!",
+      icon: "warning",
+    });
+    return;
+  }
+
+  if (newname.value === "") {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please fill the Name!",
+      confirmButtonText: swaltext,
+    });
+    return;
+  } else if (newage.value === "") {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please fill the Age!",
+      confirmButtonText: swaltext,
+    });
+    return;
+  } else if (!newgender) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "You forgot to select a Gender!",
+      confirmButtonText: swaltext,
+    });
+    return;
+  } else if (newaddress.value === "") {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please fill the Address!",
+      confirmButtonText: swaltext,
+    });
+    return;
+  } else if (newphone.value === "") {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please fill the Phone Number!",
+      confirmButtonText: swaltext,
+    });
+    return;
+  } else if (newbirth.value === "") {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please fill the Birthday!",
+      confirmButtonText: swaltext,
+    });
+    return;
+  } else if (newemail.value === "") {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please fill the Email!",
+      confirmButtonText: swaltext,
+    });
+    return;
+  } else {
+    users[updateIndex] = {
+      user_name: newname.value,
+      user_age: newage.value,
+      user_gender: newgender.value,
+      user_address: newaddress.value,
+      user_phone: newphone.value,
+      user_birth: newbirth.value,
+      user_email: newemail.value,
+    };
+
     try {
       localStorage.setItem("userinfo", JSON.stringify(users));
       console.log("Successfully saved");
@@ -204,12 +335,39 @@ function removeUser(removeindex) {
     return;
   }
 
-  users.splice(removeindex, 1);
-  localStorage.setItem("userinfo", JSON.stringify(users));
-  Swal.fire({
-    title: "Good job!",
-    text: "User deleted successfully!",
-    icon: "success",
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger",
+    },
+    // buttonsStyling: false,
   });
-  renderUsers();
+  swalWithBootstrapButtons
+    .fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        users.splice(removeindex, 1);
+        localStorage.setItem("userinfo", JSON.stringify(users));
+        swalWithBootstrapButtons.fire({
+          title: "Deleted!",
+          text: "User has been deleted.",
+          icon: "success",
+        });
+        renderUsers();
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        swalWithBootstrapButtons.fire({
+          title: "Cancelled",
+          text: "User file is safe :)",
+          icon: "error",
+        });
+      }
+    });
 }
